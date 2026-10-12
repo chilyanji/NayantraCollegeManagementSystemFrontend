@@ -1,0 +1,236 @@
+/* Classroom additions use the existing palette, spacing and component styles. */
+.classroom-page-notice {
+  flex-basis: 100%;
+  margin: 0 0 8px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.classroom-stack {
+  display: grid;
+  gap: 22px;
+  min-width: 0;
+}
+.classroom-stack > *,
+.classroom-card-grid > * {
+  min-width: 0;
+}
+.classroom-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr));
+  gap: 16px;
+  padding: 18px;
+}
+.classroom-card-body {
+  padding: 20px;
+  font-size: 12px;
+}
+.classroom-card-body h3 {
+  margin: 0;
+  font-size: 14px;
+}
+.classroom-card-body p,
+.classroom-camera-info p {
+  color: var(--muted);
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.classroom-card-body > .button {
+  margin: 12px 8px 0 0;
+}
+.classroom-row {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.classroom-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 16px;
+  padding: 18px;
+}
+.classroom-filters .field {
+  margin: 0;
+  min-width: 170px;
+  flex: 1;
+}
+.classroom-filters select,
+.classroom-filters input {
+  width: 100%;
+  max-width: 100%;
+}
+.classroom-pagination {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 14px 18px;
+  border-top: 1px solid var(--line);
+  flex-wrap: wrap;
+  font-size: 11px;
+}
+.classroom-pagination > span {
+  margin-right: auto;
+  color: var(--muted);
+}
+.classroom-camera-info {
+  padding: 14px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 0 0 var(--radius) var(--radius);
+  font-size: 12px;
+}
+.classroom-updating {
+  display: block;
+  padding: 6px 18px;
+  color: var(--muted);
+  font-size: 11px;
+}
+.classroom-details {
+  padding: 0 22px;
+}
+.classroom-evidence-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 24px;
+  padding: 22px;
+}
+.classroom-snapshot {
+  background: var(--soft);
+  min-height: 170px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+.classroom-snapshot img {
+  display: block;
+  width: 100%;
+  max-height: 450px;
+  object-fit: contain;
+}
+.classroom-tabs {
+  display: flex;
+  overflow-x: auto;
+  gap: 8px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 22px;
+  padding-bottom: 8px;
+}
+.classroom-tabs a {
+  flex-shrink: 0;
+  border-radius: 7px;
+  padding: 11px 13px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.classroom-tabs .active {
+  background: var(--blue-soft);
+  color: var(--blue);
+}
+.classroom-selected {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.classroom-wrap {
+  display: block;
+  white-space: normal;
+  max-width: 540px;
+  min-width: 170px;
+  line-height: 1.6;
+}
+.classroom-zone-frame {
+  position: relative;
+  width: 100%;
+  margin: 12px 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+.classroom-zone-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.classroom-zone-frame svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  touch-action: manipulation;
+}
+.classroom-zone-frame polygon {
+  fill: #2864e940;
+  stroke: #74a3ff;
+  stroke-width: 0.004;
+}
+.classroom-zone-frame circle {
+  fill: white;
+  stroke: #2864e9;
+  stroke-width: 0.003;
+}
+.classroom-coordinates {
+  max-height: 200px;
+  overflow-y: auto;
+  margin: 14px 0;
+}
+.classroom-coordinates .field {
+  max-width: 140px;
+  margin: 0;
+}
+.classroom-coordinates .classroom-row {
+  padding: 6px;
+  justify-content: flex-start;
+  font-size: 11px;
+}
+.classroom-sound {
+  position: fixed;
+  z-index: 30;
+  right: 22px;
+  bottom: 14px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  max-width: calc(100vw - 44px);
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--panel);
+  font-size: 10px;
+  color: var(--muted);
+}
+.classroom-notices {
+  position: fixed;
+  right: 22px;
+  top: 85px;
+  z-index: 100;
+  width: min(390px, calc(100vw - 44px));
+  display: grid;
+  gap: 12px;
+}
+.classroom-notices .toast {
+  width: 100%;
+}
+.classroom-notices p {
+  margin: 8px 0;
+  line-height: 1.6;
+}
+.classroom-notices a {
+  text-decoration: underline;
+}
+@media (max-width: 900px) {
+  .classroom-evidence-detail {
+    grid-template-columns: 1fr;
+  }
+  .classroom-card-grid {
+    padding: 12px;
+  }
+  .classroom-sound {
+    right: 10px;
+    bottom: 8px;
+    flex-wrap: wrap;
+  }
+}
