@@ -1,0 +1,12 @@
+.mfa-flow { min-width: 0; max-width: 640px; }
+.mfa-flow fieldset { min-width: 0; border: 0; margin: 0; padding: 0; }
+.mfa-flow > .button, .mfa-flow > button { margin-top: 10px; }
+.mfa-qr { display: block; width: 220px; max-width: 100%; height: auto; padding: 8px; background: white; border-radius: 8px; margin: 14px auto; }
+.mfa-check { display: flex; align-items: flex-start; gap: 10px; margin: 16px 0; line-height: 1.5; cursor: pointer; }
+.mfa-flow .mfa-check input { flex: 0 0 18px; width: 18px; height: 18px; margin: 3px 0 0; }
+.mfa-recovery { list-style: none; padding: 12px; border: 1px solid var(--border, #dce2eb); border-radius: 8px; }
+.mfa-recovery li { padding: 5px 0; overflow-wrap: anywhere; font-size: 12px; }
+.mfa-devices { list-style: none; padding: 0; }
+.mfa-devices li { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border, #dce2eb); }
+.mfa-devices li > div { min-width: 0; overflow-wrap: anywhere; }
+.mfa-flow summary { cursor: pointer; margin: 16px 0; }

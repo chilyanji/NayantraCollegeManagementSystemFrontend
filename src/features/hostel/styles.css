@@ -1,0 +1,282 @@
+.hostel-workspace .page-title {
+  margin-top: 18px;
+}
+.hostel-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+  padding: 10px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.hostel-tabs a {
+  padding: 9px 13px;
+  font-size: 13px;
+  border-radius: 7px;
+  color: var(--muted);
+}
+.hostel-tabs a.active {
+  background: var(--blue-soft);
+  color: var(--blue);
+  font-weight: 600;
+}
+.hostel-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr));
+  gap: 20px;
+}
+.hostel-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.hostel-card h2 {
+  margin: 12px 0 8px;
+}
+.hostel-card p {
+  color: var(--muted);
+  font-size: 14px;
+}
+.hostel-two-column {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(270px, 1fr);
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.hostel-padding {
+  padding: 22px;
+}
+.hostel-padding p {
+  line-height: 1.7;
+  font-size: 14px;
+  color: var(--muted);
+}
+.hostel-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--line);
+}
+.hostel-toolbar .field {
+  margin: 0;
+  flex: 1;
+  min-width: 120px;
+  max-width: 230px;
+}
+.hostel-toolbar .search {
+  min-width: 200px;
+  flex: 1;
+}
+.hostel-toolbar > label {
+  font-size: 13px;
+  align-self: center;
+}
+.hostel-pager {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 20px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.hostel-pager span {
+  margin-right: auto;
+}
+.hostel-workspace .panel {
+  margin-bottom: 20px;
+}
+.hostel-workspace td small {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 5px;
+  max-width: 340px;
+  line-height: 1.5;
+}
+.hostel-workspace td .actions {
+  display: flex;
+  flex-wrap: wrap;
+}
+.hostel-workspace td {
+  vertical-align: top;
+}
+.hostel-room {
+  border: 1px solid var(--line);
+  padding: 18px;
+  border-radius: 10px;
+  background: var(--soft);
+}
+.hostel-room header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.hostel-room h3 {
+  margin: 0;
+}
+.hostel-room p {
+  font-size: 13px;
+  color: var(--muted);
+}
+.hostel-beds {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 8px;
+  margin: 16px 0;
+}
+.hostel-beds > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border: 1px dashed var(--line);
+  background: var(--panel);
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 12px;
+}
+.hostel-beds .occupied {
+  border-style: solid;
+  border-left: 3px solid var(--blue);
+}
+.hostel-floor {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 18px;
+  font-size: 13px;
+}
+.hostel-floor progress {
+  flex: 1;
+  width: 70px;
+  accent-color: var(--blue);
+}
+.hostel-connection {
+  font-size: 12px;
+  color: var(--muted);
+  max-width: 210px;
+}
+.hostel-connection.online {
+  color: var(--green);
+}
+.hostel-hash {
+  display: block;
+  max-width: 230px;
+  overflow-wrap: anywhere;
+  font-size: 11px;
+}
+.hostel-alarm {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 200;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  width: min(500px, calc(100vw - 32px));
+  border: 2px solid var(--red);
+  border-radius: 12px;
+  padding: 20px;
+  background: var(--panel);
+  color: var(--ink);
+  box-shadow: 0 12px 40px #0003;
+}
+.hostel-alarm > svg {
+  flex-shrink: 0;
+  color: var(--red);
+}
+.hostel-alarm p {
+  font-size: 13px;
+  line-height: 1.6;
+}
+.hostel-alarm a {
+  display: inline-block;
+  color: var(--blue);
+  margin-right: 14px;
+  text-decoration: underline;
+}
+.hostel-zone-frame {
+  position: relative;
+  background: #151c28;
+  margin: 18px 0;
+  line-height: 0;
+}
+.hostel-zone-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.hostel-zone-frame svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  touch-action: none;
+}
+.hostel-zone-frame polygon {
+  stroke-width: 3;
+  vector-effect: non-scaling-stroke;
+}
+.hostel-zone-frame .outside {
+  fill: #e8a73c66;
+  stroke: #e8a73c;
+}
+.hostel-zone-frame .inside {
+  fill: #2989ff66;
+  stroke: #2989ff;
+}
+.hostel-zone-frame circle {
+  stroke: white;
+  stroke-width: 2;
+}
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 24px;
+}
+.modal .form-grid > p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.auth-form .segmented {
+  flex-wrap: wrap;
+}
+.auth-form .segmented button {
+  flex: 1 1 90px;
+}
+@media (max-width: 900px) {
+  .hostel-two-column {
+    grid-template-columns: 1fr;
+  }
+  .hostel-workspace .metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .hostel-alarm {
+    right: 16px;
+    bottom: 16px;
+  }
+}
+@media (max-width: 520px) {
+  .hostel-workspace .metrics {
+    grid-template-columns: 1fr;
+  }
+  .hostel-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+  .hostel-tabs a {
+    white-space: nowrap;
+  }
+  .hostel-pager {
+    flex-wrap: wrap;
+  }
+}
