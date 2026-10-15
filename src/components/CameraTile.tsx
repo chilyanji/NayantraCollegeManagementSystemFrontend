@@ -13,6 +13,14 @@ import { JpegParser } from "../lib/mjpeg";
 import { useVisible } from "../lib/hooks";
 import { download } from "../lib/domain";
 import { Badge, Button } from "./ui";
+
+// ngrok's free-domain browser interstitial must not replace MJPEG stream data.
+// Use the extra header only for ngrok URLs, not for localhost or other APIs.
+function isNgrokFreeUrl(streamUrl: string): boolean {
+  const hostname = new URL(streamUrl, window.location.origin).hostname;
+  return /\.ngrok-free\.(?:app|dev)$/i.test(hostname);
+}
+
 export function CameraTile({
   camera,
   expanded = false,
@@ -43,26 +51,41 @@ export function CameraTile({
       setState(paused ? "Paused" : "Hidden");
       return;
     }
+    if (!token) {
+      setState("Offline");
+      setError("Your login session is unavailable. Please sign in again.");
+      return;
+    }
+
     async function connect() {
       if (disposed) return;
-      controller = new AbortController();
+      const activeController = new AbortController();
+      controller = activeController;
       setState("Connecting");
       setError("");
       let watchdog: ReturnType<typeof setTimeout> | undefined;
       const reset = () => {
         clearTimeout(watchdog);
-        watchdog = setTimeout(() => controller?.abort(), 15000);
+        watchdog = setTimeout(() => activeController.abort(), 15000);
       };
       reset();
       try {
-        const response = await fetch(
-          apiUrl(`/ai/camera/${encodeURIComponent(camera.camera_id)}/stream`),
-          {
-            headers: { Authorization: `Bearer ${token}` },
-            signal: controller.signal,
-            credentials: "omit",
-          },
+        const streamUrl = apiUrl(
+          `/ai/camera/${encodeURIComponent(camera.camera_id)}/stream`,
         );
+        const headers: Record<string, string> = {
+          Authorization: `Bearer ${token}`,
+        };
+        if (isNgrokFreeUrl(streamUrl)) {
+          headers["ngrok-skip-browser-warning"] = "1";
+        }
+
+        const response = await fetch(streamUrl, {
+          method: "GET",
+          headers,
+          signal: activeController.signal,
+          credentials: "omit",
+        });
         if (!response.ok) {
           if (response.status === 401 && getSession()?.token === token)
             window.dispatchEvent(new CustomEvent("sentinel:expired"));
@@ -73,6 +96,14 @@ export function CameraTile({
             /* status fallback */
           }
           throw Object.assign(new Error(message), { status: response.status });
+        }
+        // A successful HTML/JSON response is not an MJPEG stream (for example,
+        // an ngrok interstitial or an incorrectly routed Vercel request).
+        const contentType = (response.headers.get("content-type") || "").toLowerCase();
+        if (contentType.includes("text/html") || contentType.includes("application/json")) {
+          throw new Error(
+            "The camera endpoint returned HTML/JSON instead of a video stream. Check the ngrok backend URL.",
+          );
         }
         if (!response.body)
           throw new Error("This browser cannot read a camera stream.");
@@ -117,7 +148,7 @@ export function CameraTile({
           retry = setTimeout(connect, Math.min(30000, 2000 * 2 ** failures++));
       } finally {
         clearTimeout(watchdog);
-        controller?.abort();
+        activeController.abort();
       }
     }
     connect();
